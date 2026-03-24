@@ -1,0 +1,209 @@
+/* Page-specific & utility theme overrides */
+body { background: var(--bg); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--saffron); }
+
+/* Packing list */
+.pack-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+}
+.pack-item:last-child { border-bottom: none; }
+.pack-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--saffron); flex-shrink: 0; cursor: pointer; }
+.pack-item.done { text-decoration: line-through; color: var(--muted); }
+
+/* Map */
+#trip-map { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); }
+
+/* Storybook cards */
+.story-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+.story-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.story-card-img { width: 100%; height: 180px; object-fit: cover; }
+.story-card-body { padding: 20px; }
+.story-card-body h3 { margin-bottom: 6px; }
+.story-card-meta { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; flex-wrap: wrap; }
+.story-card-meta span { font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+
+/* Festivals */
+.festival-card {
+  background: linear-gradient(135deg, var(--surface), #fffdf5);
+  border: 1px solid #f5d47a;
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+.festival-card .month-badge {
+  background: var(--gold);
+  color: #fff;
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+/* Weather */
+.weather-card {
+  background: linear-gradient(135deg, #0E6B6B, #14A19A);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  color: #fff;
+  text-align: center;
+}
+.weather-card .temp { font-size: 4rem; font-family: 'Playfair Display', serif; font-weight: 700; }
+.weather-card .condition { font-size: 1.1rem; opacity: 0.85; margin-bottom: 20px; }
+.weather-forecast { display: flex; gap: 16px; margin-top: 24px; overflow-x: auto; }
+.forecast-day { text-align: center; flex-shrink: 0; background: rgba(255,255,255,0.12); border-radius: var(--radius-sm); padding: 14px 18px; }
+.forecast-day .day-name { font-size: 0.8rem; opacity: 0.75; margin-bottom: 6px; }
+.forecast-day .day-temp { font-size: 1.1rem; font-weight: 700; }
+
+/* Safety page */
+.safety-tip {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 14px;
+}
+.safety-tip-icon { width: 44px; height: 44px; border-radius: 50%; background: #fee2e2; display: flex; align-items: center; justify-content: center; color: #dc2626; font-size: 1rem; flex-shrink: 0; }
+.safety-tip h4 { margin-bottom: 4px; font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 700; }
+.safety-tip p { font-size: 0.88rem; margin: 0; }
+
+/* Page hero banners */
+.page-banner {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 40px;
+  min-height: 240px;
+  display: flex;
+  align-items: flex-end;
+}
+.page-banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.page-banner-overlay { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(28,16,7,0.7) 0%, rgba(14,107,107,0.6) 100%); }
+.page-banner-content { position: relative; z-index: 2; padding: 36px 40px; color: #fff; }
+.page-banner-content h1 { color: #fff; margin-bottom: 6px; font-size: clamp(1.8rem, 3vw, 2.8rem); }
+.page-banner-content p { color: rgba(255,255,255,0.8); margin: 0; font-size: 1rem; }
+
+/* Destination exploration banner images */
+.dest-banner-goa { background: linear-gradient(160deg, rgba(14,107,107,0.7), rgba(28,16,7,0.6)), url('https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1200&q=80') center/cover; }
+.dest-banner-rajasthan { background: linear-gradient(160deg, rgba(212,98,26,0.7), rgba(28,16,7,0.6)), url('https://images.unsplash.com/photo-1477587458883-47145ed94245?w=1200&q=80') center/cover; }
+.dest-banner-kerala { background: linear-gradient(160deg, rgba(14,107,107,0.7), rgba(28,16,7,0.6)), url('https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=1200&q=80') center/cover; }
+
+/* Step indicators for plan trip */
+.step-panel {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.step-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.step-title-num {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, var(--saffron), var(--saffron-light));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.step-title-text h2 { font-size: 1.4rem; margin-bottom: 2px; }
+.step-title-text p { font-size: 0.88rem; color: var(--muted); margin: 0; }
+
+/* Budget slider */
+.budget-slider { width: 100%; height: 6px; border-radius: 999px; appearance: none; background: linear-gradient(90deg, var(--saffron) 0%, var(--saffron-light) 50%, var(--border) 50%); cursor: pointer; margin-bottom: 0; padding: 0; border: none; }
+.budget-slider::-webkit-slider-thumb { appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--saffron); border: 3px solid #fff; box-shadow: 0 2px 8px rgba(212,98,26,0.4); cursor: pointer; }
+
+/* Profile page */
+.profile-avatar-wrap { text-align: center; margin-bottom: 24px; }
+.profile-avatar {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--saffron);
+  box-shadow: 0 8px 24px rgba(212,98,26,0.2);
+}
+.profile-avatar-placeholder {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--saffron), var(--saffron-light));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  color: #fff;
+  margin: 0 auto;
+  border: 4px solid rgba(255,255,255,0.3);
+}
+
+/* Mood moods */
+.mood-amazing { color: #16a34a; font-weight: 700; }
+.mood-good { color: #2563eb; font-weight: 700; }
+.mood-okay { color: #d97706; font-weight: 700; }
+.mood-tough { color: #dc2626; font-weight: 700; }
+
+/* Settings toggle */
+.settings-section { padding: 28px 0; border-bottom: 1px solid var(--border); }
+.settings-section:last-child { border-bottom: none; }
+.settings-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 16px; }
+.settings-row label { font-weight: 600; font-size: 0.92rem; }
+.toggle-switch { position: relative; width: 44px; height: 24px; }
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-slider { position: absolute; inset: 0; background: var(--border); border-radius: 999px; cursor: pointer; transition: 0.3s; }
+.toggle-slider::before { content: ''; position: absolute; width: 18px; height: 18px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.3s; }
+.toggle-switch input:checked + .toggle-slider { background: var(--saffron); }
+.toggle-switch input:checked + .toggle-slider::before { transform: translateX(20px); }
+
+/* Chatbot page specific */
+.page-chatbot .chat-shell { max-width: 860px; margin: 0 auto; }
+.chat-wandi-header {
+  background: linear-gradient(135deg, var(--saffron), var(--saffron-light));
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #fff;
+}
+.chat-wandi-avatar {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+}
+.chat-wandi-info h3 { color: #fff; margin: 0; font-size: 1rem; }
+.chat-wandi-info span { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
+.chat-online-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; display: inline-block; margin-right: 4px; animation: blink 1.5s infinite; }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .step-panel { padding: 24px 18px; }
+  .page-banner-content { padding: 24px 20px; }
+}

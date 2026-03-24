@@ -1,0 +1,9 @@
+Options -Indexes
+ServerSignature Off
+Header always set X-Content-Type-Options nosniff
+Header always set X-XSS-Protection "1; mode=block"
+Header always set Referrer-Policy no-referrer-when-downgrade
+
+RewriteEngine On
+
+ErrorDocument 404 /404.php

@@ -1,0 +1,6 @@
+<?php
+require_once 'config.php';require_once 'includes/db.php';require_once 'includes/functions.php';$db=getDB();$error='';
+if($_SERVER['REQUEST_METHOD']==='POST'){verifyCsrf();$email=filter_var(clean($_POST['email']??''),FILTER_VALIDATE_EMAIL);if(!$email){$error='Enter valid email.';}else{$st=$db->prepare('SELECT id FROM users WHERE email=?');$st->execute([$email]);$u=$st->fetch();if(!$u){$error='Email not found.';}else{$otp=randomOtp();$h=password_hash($otp,PASSWORD_BCRYPT,['cost'=>12]);$db->prepare('UPDATE users SET otp_code=?, otp_expires=DATE_ADD(NOW(), INTERVAL 10 MINUTE) WHERE id=?')->execute([$h,$u['id']]);sendMailSimple($email,'WanderWise Password Reset OTP','Your OTP: '.$otp);$_SESSION['otp_email']=$email;header('Location: verify-otp.php');exit;}}}
+$pageTitle='Forgot Password';require_once 'includes/header.php'; ?>
+<div class="page-container section"><div class="card" style="max-width:500px;margin:auto"><h2>Forgot Password</h2><?php if($error): ?><div class="alert alert-error"><?=e($error)?></div><?php endif; ?><form method="post"><input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']) ?>"><input type="email" name="email" placeholder="Email" required><button class="btn-primary">Send OTP</button></form><p><a href="reset-password.php">Already have OTP? Reset now</a></p></div></div>
+<?php require_once 'includes/footer.php'; ?>
