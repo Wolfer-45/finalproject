@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';require_once 'includes/db.php';require_once 'includes/auth.php';require_once 'includes/functions.php';require_once 'includes/gemini.php';requireLogin();
+require_once 'config.php';require_once 'includes/db.php';require_once 'includes/auth.php';require_once 'includes/functions.php';require_once 'includes/gemini.php';
 $db=getDB();$dest=clean($_GET['dest']??$_POST['destination']??'');$story='';$error='';
 if($_SERVER['REQUEST_METHOD']==='POST'){verifyCsrf();$dest=clean($_POST['destination']??'');}
 if($dest){$cache=$db->prepare('SELECT story_text,created_at FROM stories_cache WHERE destination=?');$cache->execute([$dest]);$c=$cache->fetch();

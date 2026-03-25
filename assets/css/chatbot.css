@@ -1,31 +1,18 @@
 /* Chatbot page specific styles */
-.page-chatbot { background: linear-gradient(160deg, #0E1F1F 0%, #1C1007 100%); min-height: 100vh; }
-.page-chatbot .navbar { background: rgba(28,16,7,0.97); border-bottom-color: rgba(212,98,26,0.2); }
-.page-chatbot .navbar .brand { color: var(--gold-light); }
-.page-chatbot .navbar .brand span { color: var(--saffron-light); }
-.page-chatbot .nav-links > a { color: rgba(255,255,255,0.7); }
-.page-chatbot .nav-links > a:hover { color: #fff; background: rgba(255,255,255,0.1); }
-.page-chatbot .site-footer { margin-top: 0; }
-
 .chat-shell { padding: 40px 0 60px; }
 .chat-card {
   background: var(--surface);
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
-  border: 1px solid rgba(212,98,26,0.15);
+  border: 1px solid rgba(0,112,187,0.15);
 }
 .chat-body { padding: 20px 20px 0; }
 .chat-footer-bar { padding: 16px 20px 20px; background: var(--surface); border-top: 1px solid var(--border); }
-.chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
-.chip { padding: 8px 16px; background: rgba(212,98,26,0.08); border: 1px solid rgba(212,98,26,0.2); border-radius: 999px; font-size: 0.82rem; font-weight: 600; color: var(--saffron); cursor: pointer; transition: all 0.2s; font-family: 'Inter',sans-serif; }
-.chip:hover { background: var(--saffron); color: #fff; border-color: var(--saffron); }
-.chat-input-row { display: flex; gap: 12px; }
-.chat-input-row .form-input { flex: 1; border-radius: 999px; padding: 14px 20px; }
 .chat-typing { display: none; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; }
 .chat-typing.active { display: flex; }
 .typing-dots { display: flex; gap: 3px; }
-.typing-dots span { width: 6px; height: 6px; background: var(--saffron); border-radius: 50%; animation: typingDot 1.2s infinite; }
+.typing-dots span { width: 6px; height: 6px; background: var(--primary); border-radius: 50%; animation: typingDot 1.2s infinite; }
 .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
 .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
 @keyframes typingDot { 0%,80%,100% { transform: scale(0.6); opacity: 0.4; } 40% { transform: scale(1); opacity: 1; } }

@@ -47,12 +47,12 @@ require_once 'includes/header.php';
     <div class="grid-3">
       <?php
       $features = [
-        ['fas fa-route', 'AI Trip Planner', 'Get a complete day-by-day itinerary tailored to your budget, style, and interests in seconds.', '#C8501A'],
-        ['fas fa-user-group', 'Travel Buddy Finder', 'Connect with like-minded explorers going to the same destination at the same time.', '#0E6B6B'],
-        ['fas fa-book-open', 'AI Storybook', 'Transform your trip memories into beautiful, shareable stories powered by AI.', '#C8920A'],
-        ['fas fa-wallet', 'Budget Tracker', 'Track every expense, set category budgets, and stay in control of your travel spend.', '#7B1E32'],
-        ['fas fa-cloud-sun', 'Live Weather', 'Real-time forecasts for your destination so you can pack smart and plan smart.', '#2563EB'],
-        ['fas fa-robot', 'Wandi AI Chat', 'Ask anything about travel — destinations, tips, packing, local customs — anytime.', '#16A34A'],
+        ['fas fa-route', 'AI Trip Planner', 'Get a complete day-by-day itinerary tailored to your budget, style, and interests in seconds.', '#0070BB'],
+        ['fas fa-user-group', 'Travel Buddy Finder', 'Connect with like-minded explorers going to the same destination at the same time.', '#003262'],
+        ['fas fa-book-open', 'AI Storybook', 'Transform your trip memories into beautiful, shareable stories powered by AI.', '#0070BB'],
+        ['fas fa-wallet', 'Budget Tracker', 'Track every expense, set category budgets, and stay in control of your travel spend.', '#003262'],
+        ['fas fa-cloud-sun', 'Live Weather', 'Real-time forecasts for your destination so you can pack smart and plan smart.', '#0070BB'],
+        ['fas fa-robot', 'Wandi AI Chat', 'Ask anything about travel — destinations, tips, packing, local customs — anytime.', '#003262'],
       ];
       foreach ($features as $f): ?>
       <div class="feature-card card-hover">
@@ -83,10 +83,10 @@ require_once 'includes/header.php';
       ];
       foreach ($steps as $s): ?>
       <div class="card card-hover" style="text-align:center;padding:36px 28px">
-        <div style="width:64px;height:64px;background:linear-gradient(135deg,var(--saffron),var(--saffron-light));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.6rem;color:#fff">
+        <div style="width:64px;height:64px;background:linear-gradient(135deg,var(--primary-dark),var(--primary));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.6rem;color:#fff">
           <i class="<?= e($s[1]) ?>"></i>
         </div>
-        <div style="font-family:'Playfair Display',serif;font-size:3rem;font-weight:800;color:rgba(212,98,26,.1);margin-bottom:-16px;margin-top:-8px"><?= e($s[0]) ?></div>
+        <div style="font-family:'Playfair Display',serif;font-size:3rem;font-weight:800;color:rgba(0,50,98,.08);margin-bottom:-16px;margin-top:-8px"><?= e($s[0]) ?></div>
         <h3 style="color:var(--text);margin-bottom:10px"><?= e($s[2]) ?></h3>
         <p style="font-size:.92rem"><?= e($s[3]) ?></p>
       </div>
@@ -141,7 +141,7 @@ require_once 'includes/header.php';
 <?php if(!isLoggedIn()): ?>
 <section class="section" style="padding:0">
   <div class="page-container" style="padding-bottom:80px">
-    <div style="background:linear-gradient(135deg,rgba(28,16,7,0.92),rgba(14,107,107,0.85)),url('https://images.unsplash.com/photo-1544015759-237f43a3e0f8?w=1200&q=80') center/cover;border-radius:var(--radius-lg);padding:64px 56px;text-align:center;color:#fff">
+    <div style="background:linear-gradient(135deg,rgba(0,50,98,0.92),rgba(0,112,187,0.85)),url('https://images.unsplash.com/photo-1544015759-237f43a3e0f8?w=1200&q=80') center/cover;border-radius:var(--radius-lg);padding:64px 56px;text-align:center;color:#fff">
       <div style="max-width:560px;margin:0 auto">
         <h2 style="color:#fff;margin-bottom:12px">Ready to Explore Incredible India?</h2>
         <p style="color:rgba(255,255,255,.8);margin-bottom:32px;font-size:1.05rem">Join thousands of travellers planning smarter trips with WanderWise. Free forever.</p>

@@ -4,7 +4,6 @@ require_once 'includes/db.php';
 require_once 'includes/auth.php';
 require_once 'includes/functions.php';
 require_once 'includes/weather-api.php';
-requireLogin();
 $dest = clean($_GET['dest'] ?? $_POST['dest'] ?? '');
 $weather = ['ok' => false, 'days' => [], 'message' => ''];
 if ($dest) {

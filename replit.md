@@ -4,18 +4,19 @@ A PHP 8.2 travel planning web application with MySQL database backend.
 
 ## Overview
 
-WanderWise is an AI-powered travel companion for India and beyond. It helps users plan trips, find travel buddies, track budgets, and keep travel memories.
+WanderWise is an AI-powered travel companion for India. It helps users plan trips, find travel buddies, track budgets, and keep travel memories — with a full blue-tone UI (primary #0070BB, dark #003262, white).
 
 ## Features
 
 - Trip planning with AI itinerary generation (Google Gemini API)
 - Weather forecasts (OpenWeatherMap API)
-- Travel buddy matching
-- Budget tracking and expense management
-- Storybook (travel journal with photo uploads)
-- Festival information
+- Travel buddy matching (public browseable for guests)
+- Budget tracking and expense management (₹ INR throughout)
+- Storybook as interactive book UI with page-turning navigation
+- Festival calendar with month-by-month Indian festivals
 - Safety tips
-- AI chatbot
+- AI chatbot (Wandi) — guest preview available
+- Dashboard with Chart.js doughnut charts for trip status + mood breakdown
 
 ## Architecture
 
@@ -23,6 +24,23 @@ WanderWise is an AI-powered travel companion for India and beyond. It helps user
 - **Database**: MySQL 8.0 (local, socket-based connection)
 - **Server**: PHP built-in development server on port 5000
 - **No build system** — traditional PHP web app
+
+## Color Palette (Redesigned)
+
+- Primary: `#0070BB` (main blue)
+- Dark: `#003262` (navy)
+- Light: `#4A9FD4` (lighter blue)
+- Background: `#F0F7FF` (very light blue-white)
+- All CSS variables: `--primary`, `--primary-dark`, `--primary-light`
+- Legacy aliases: `--saffron`, `--teal`, `--gold` all map to blue values
+
+## Guest Access Model
+
+- Pages accessible without login: Home, Plan Trip, AI Chat, Find Buddy, Festivals, Weather, Safety, Stories
+- Pages requiring login: Dashboard, Profile, Settings, Budget, Storybook, Itinerary, Map, Packing
+- Guest action intercept: `showLoginModal()` is shown when guests try to submit forms or take actions
+- Navbar (guest): Home, Plan Trip, AI Chat, Find Buddy, Festivals, Login, Get Started Free
+- Navbar (logged in): Dashboard, Plan Trip, AI Chat, Find Buddy, Stories, Festivals, Profile, Logout
 
 ## Project Structure
 
@@ -35,16 +53,19 @@ WanderWise is an AI-powered travel companion for India and beyond. It helps user
 │   ├── db.php              # PDO database connection (supports socket)
 │   ├── auth.php            # Authentication helpers
 │   ├── functions.php       # Utility functions
-│   ├── header.php          # HTML header/nav
+│   ├── header.php          # HTML header/nav (consistent guest+auth navbar + login modal)
 │   ├── footer.php          # HTML footer
 │   ├── gemini.php          # Gemini AI API integration
 │   └── weather-api.php     # OpenWeatherMap integration
 ├── assets/
-│   ├── css/               # Stylesheets
-│   ├── js/                # JavaScript
-│   └── images/            # Static images
+│   ├── css/
+│   │   ├── style.css       # Main design system (blue palette, components)
+│   │   ├── travel-theme.css # Page-specific styles, book UI, chatbot
+│   │   └── chatbot.css     # Chatbot-specific styles
+│   ├── js/                 # JavaScript
+│   └── images/             # Static images
 ├── uploads/
-│   └── storybook/         # User-uploaded photos
+│   └── storybook/          # User-uploaded photos
 └── data/
     └── travel-knowledge.txt
 ```
@@ -77,3 +98,5 @@ The `start.sh` script:
 - MySQL connects via Unix socket for reliability
 - HTTPS redirect in `.htaccess` is disabled (Replit handles TLS at proxy level)
 - X-Frame-Options header removed to allow Replit iframe preview
+- Currency: all INR (₹) — no dollar signs in UI
+- Chart.js 4.4.0 loaded via CDN on dashboard for activity charts

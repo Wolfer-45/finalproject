@@ -1,9 +1,9 @@
 <?php
-require_once 'config.php';require_once 'includes/db.php';require_once 'includes/auth.php';require_once 'includes/functions.php';requireLogin();$db=getDB();$user=getCurrentUser();
-if($_SERVER['REQUEST_METHOD']==='POST'){verifyCsrf();if(isset($_POST['sos'])){$msg='EMERGENCY ALERT: '.$user['name'].' needs help. Sent from WanderWise at '.date('Y-m-d H:i:s').'. Last known location: Unknown.';if(!empty($user['emergency_phone'])){sendMailSimple($user['email'],'Emergency Alert',$msg);}setFlash('success','Emergency alert sent to your emergency contact.');header('Location: safety.php');exit;}}
+require_once 'config.php';require_once 'includes/db.php';require_once 'includes/auth.php';require_once 'includes/functions.php';$db=getDB();$user=isLoggedIn()?getCurrentUser():null;
+if($_SERVER['REQUEST_METHOD']==='POST' && isLoggedIn()){verifyCsrf();if(isset($_POST['sos']) && $user){$msg='EMERGENCY ALERT: '.$user['name'].' needs help. Sent from WanderWise at '.date('Y-m-d H:i:s').'. Last known location: Unknown.';if(!empty($user['emergency_phone'])){sendMailSimple($user['email'],'Emergency Alert',$msg);}setFlash('success','Emergency alert sent to your emergency contact.');header('Location: safety.php');exit;}}
 $pageTitle='Safety Center';require_once 'includes/header.php'; ?>
 
-<div style="background:linear-gradient(160deg,rgba(123,30,50,0.85),rgba(28,16,7,0.9)),url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1200&q=80') center/cover;padding:56px 0 52px">
+<div style="background:linear-gradient(160deg,rgba(0,50,98,0.88),rgba(0,112,187,0.72)),url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1200&q=80') center/cover;padding:56px 0 52px">
   <div class="page-container">
     <div style="color:#fff;max-width:560px">
       <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);color:#fff;padding:7px 16px;border-radius:999px;font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px">

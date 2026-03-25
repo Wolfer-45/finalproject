@@ -6,6 +6,7 @@ require_once __DIR__ . '/functions.php';
 ensureCsrf();
 $autoPageClass = 'page-' . str_replace('.php', '', basename($_SERVER['PHP_SELF'] ?? 'index.php'));
 $bodyClass = !empty($pageClass) ? $pageClass . ' ' . $autoPageClass : $autoPageClass;
+$currentPage = basename($_SERVER['PHP_SELF'] ?? '');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,18 +33,20 @@ $bodyClass = !empty($pageClass) ? $pageClass . ' ' . $autoPageClass : $autoPageC
 
   <div class="nav-links" id="nav-menu">
     <?php if (isLoggedIn()): ?>
-      <a href="<?= SITE_URL ?>/dashboard.php"><i class="fas fa-th-large" style="margin-right:4px;opacity:.6"></i>Dashboard</a>
-      <a href="<?= SITE_URL ?>/plan-trip.php"><i class="fas fa-route" style="margin-right:4px;opacity:.6"></i>Plan Trip</a>
-      <a href="<?= SITE_URL ?>/chatbot.php"><i class="fas fa-robot" style="margin-right:4px;opacity:.6"></i>AI Chat</a>
-      <a href="<?= SITE_URL ?>/travel-buddy.php"><i class="fas fa-user-group" style="margin-right:4px;opacity:.6"></i>Find Buddy</a>
-      <a href="<?= SITE_URL ?>/festivals.php"><i class="fas fa-star-and-crescent" style="margin-right:4px;opacity:.6"></i>Festivals</a>
-      <a href="<?= SITE_URL ?>/storybook.php"><i class="fas fa-book-open" style="margin-right:4px;opacity:.6"></i>Stories</a>
+      <a href="<?= SITE_URL ?>/dashboard.php" <?= $currentPage==='dashboard.php'?'class="nav-active"':'' ?>><i class="fas fa-th-large" style="margin-right:4px;opacity:.6"></i>Dashboard</a>
+      <a href="<?= SITE_URL ?>/plan-trip.php" <?= $currentPage==='plan-trip.php'?'class="nav-active"':'' ?>><i class="fas fa-route" style="margin-right:4px;opacity:.6"></i>Plan Trip</a>
+      <a href="<?= SITE_URL ?>/chatbot.php" <?= $currentPage==='chatbot.php'?'class="nav-active"':'' ?>><i class="fas fa-robot" style="margin-right:4px;opacity:.6"></i>AI Chat</a>
+      <a href="<?= SITE_URL ?>/travel-buddy.php" <?= $currentPage==='travel-buddy.php'?'class="nav-active"':'' ?>><i class="fas fa-user-group" style="margin-right:4px;opacity:.6"></i>Find Buddy</a>
+      <a href="<?= SITE_URL ?>/storybook.php" <?= $currentPage==='storybook.php'?'class="nav-active"':'' ?>><i class="fas fa-book-open" style="margin-right:4px;opacity:.6"></i>Stories</a>
+      <a href="<?= SITE_URL ?>/festivals.php" <?= $currentPage==='festivals.php'?'class="nav-active"':'' ?>><i class="fas fa-star-and-crescent" style="margin-right:4px;opacity:.6"></i>Festivals</a>
       <a href="<?= SITE_URL ?>/profile.php" class="btn-primary btn-sm"><i class="fas fa-user"></i>Profile</a>
       <a href="<?= SITE_URL ?>/logout.php" class="btn-outline btn-sm">Logout</a>
     <?php else: ?>
-      <a href="<?= SITE_URL ?>/index.php">Home</a>
-      <a href="<?= SITE_URL ?>/stories.php">Stories</a>
-      <a href="<?= SITE_URL ?>/festivals.php">Festivals</a>
+      <a href="<?= SITE_URL ?>/index.php" <?= $currentPage==='index.php'?'class="nav-active"':'' ?>>Home</a>
+      <a href="<?= SITE_URL ?>/plan-trip.php" <?= $currentPage==='plan-trip.php'?'class="nav-active"':'' ?>><i class="fas fa-route" style="margin-right:4px;opacity:.6"></i>Plan Trip</a>
+      <a href="<?= SITE_URL ?>/chatbot.php" <?= $currentPage==='chatbot.php'?'class="nav-active"':'' ?>><i class="fas fa-robot" style="margin-right:4px;opacity:.6"></i>AI Chat</a>
+      <a href="<?= SITE_URL ?>/travel-buddy.php" <?= $currentPage==='travel-buddy.php'?'class="nav-active"':'' ?>><i class="fas fa-user-group" style="margin-right:4px;opacity:.6"></i>Find Buddy</a>
+      <a href="<?= SITE_URL ?>/festivals.php" <?= $currentPage==='festivals.php'?'class="nav-active"':'' ?>><i class="fas fa-star-and-crescent" style="margin-right:4px;opacity:.6"></i>Festivals</a>
       <a href="<?= SITE_URL ?>/login.php" class="btn-outline btn-sm">Login</a>
       <a href="<?= SITE_URL ?>/signup.php" class="btn-primary btn-sm">Get Started Free</a>
     <?php endif; ?>
@@ -53,6 +56,35 @@ $bodyClass = !empty($pageClass) ? $pageClass . ' ' . $autoPageClass : $autoPageC
     <i class="fas fa-bars"></i>
   </button>
 </nav>
+
+<!-- Login Prompt Modal (shown by showLoginModal()) -->
+<div class="modal-overlay" id="login-modal" style="display:none">
+  <div class="modal-box" style="position:relative">
+    <button class="modal-close" onclick="document.getElementById('login-modal').style.display='none'" aria-label="Close">&times;</button>
+    <div class="modal-icon"><i class="fas fa-compass"></i></div>
+    <h3>Join WanderWise to Continue</h3>
+    <p>Sign up free to plan trips, chat with AI, track budgets and save your travel memories.</p>
+    <div class="modal-actions">
+      <a href="<?= SITE_URL ?>/signup.php" class="btn-primary" style="justify-content:center"><i class="fas fa-user-plus"></i> Create Free Account</a>
+      <a href="<?= SITE_URL ?>/login.php" class="btn-outline" style="justify-content:center"><i class="fas fa-sign-in-alt"></i> Log In</a>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('nav-toggle')?.addEventListener('click', function() {
+  document.getElementById('nav-menu').classList.toggle('open');
+});
+window.showLoginModal = function() {
+  document.getElementById('login-modal').style.display = 'flex';
+};
+document.getElementById('login-modal')?.addEventListener('click', function(e) {
+  if (e.target === this) this.style.display = 'none';
+});
+window.addEventListener('scroll', function() {
+  document.getElementById('main-navbar')?.classList.toggle('scrolled', window.scrollY > 20);
+});
+</script>
 
 <?php $flash = getFlash(); if ($flash): ?>
   <div class="alert alert-<?= e($flash['type']) ?>" style="width:min(1200px,92vw);margin:14px auto 0">
